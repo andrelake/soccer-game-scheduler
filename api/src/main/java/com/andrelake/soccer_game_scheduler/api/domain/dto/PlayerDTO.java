@@ -1,6 +1,7 @@
 package com.andrelake.soccer_game_scheduler.api.domain.dto;
 
 import com.andrelake.soccer_game_scheduler.api.controllers.dto.CreatePlayerRequest;
+import com.andrelake.soccer_game_scheduler.api.domain.Player;
 import com.andrelake.soccer_game_scheduler.api.domain.enums.PositionEnum;
 import lombok.*;
 
@@ -11,6 +12,7 @@ import java.util.List;
 @Builder
 public class PlayerDTO {
 
+    private Long id;
     private String name;
     private String email;
     private String phoneNumber;
@@ -27,6 +29,18 @@ public class PlayerDTO {
                 .position(request.getPosition())
                 .hasRecurringAvailability(request.getHasRecurringAvailability())
                 .days(request.getDays())
+                .build();
+    }
+
+    public static PlayerDTO toPlayerDTO(Player player) {
+        return PlayerDTO.builder()
+                .id(player.getId())
+                .name(player.getName())
+                .email(player.getEmail())
+                .phoneNumber(player.getPhoneNumber())
+                .position(player.getPosition())
+                .hasRecurringAvailability(player.getHasRecurringAvailability())
+                .days(player.getDays())
                 .build();
     }
 }

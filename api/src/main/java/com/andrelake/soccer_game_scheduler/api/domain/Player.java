@@ -38,6 +38,7 @@ public class Player {
         }
 
         Player player = new Player();
+        player.setId(playerDTO.getId());
         player.setName(playerDTO.getName());
         player.setEmail(playerDTO.getEmail());
         player.setPhoneNumber(playerDTO.getPhoneNumber());

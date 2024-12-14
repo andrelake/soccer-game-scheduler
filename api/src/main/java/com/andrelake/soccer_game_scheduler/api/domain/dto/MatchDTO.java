@@ -1,6 +1,7 @@
 package com.andrelake.soccer_game_scheduler.api.domain.dto;
 
 import com.andrelake.soccer_game_scheduler.api.controllers.dto.CreateMatchRequest;
+import com.andrelake.soccer_game_scheduler.api.domain.Match;
 import lombok.Builder;
 import lombok.Data;
 
@@ -19,6 +20,15 @@ public class MatchDTO {
     public static MatchDTO toMatchDTO(CreateMatchRequest request) {
         return MatchDTO.builder()
                 .startsAt(request.getStartsAt())
+                .build();
+    }
+
+    public static MatchDTO toMatchDTO(Match match) {
+        return MatchDTO.builder()
+                .id(match.getId())
+                .createdAt(match.getCreatedAt())
+                .players(match.getPlayers().stream().map(PlayerDTO::toPlayerDTO).toList())
+                .startsAt(match.getStartsAt())
                 .build();
     }
 

@@ -13,6 +13,7 @@ import java.util.List;
 @Builder
 public class PlayerDTO {
 
+    private Long id;
     private String name;
     private String email;
     private String phoneNumber;
@@ -34,6 +35,7 @@ public class PlayerDTO {
 
     public static PlayerDTO toPlayerDTO(Player player) {
         return PlayerDTO.builder()
+                .id(player.getId())
                 .name(player.getName())
                 .email(player.getEmail())
                 .phoneNumber(player.getPhoneNumber())

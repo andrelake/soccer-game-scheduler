@@ -3,7 +3,8 @@ package com.andrelake.soccer_game_scheduler.api.domain.dto;
 import com.andrelake.soccer_game_scheduler.api.controllers.dto.CreatePlayerRequest;
 import com.andrelake.soccer_game_scheduler.api.domain.Player;
 import com.andrelake.soccer_game_scheduler.api.domain.enums.PositionEnum;
-import lombok.*;
+import lombok.Builder;
+import lombok.Data;
 
 import java.time.DayOfWeek;
 import java.util.List;
@@ -43,4 +44,5 @@ public class PlayerDTO {
                 .days(player.getDays())
                 .build();
     }
+
 }

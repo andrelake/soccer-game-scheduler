@@ -23,10 +23,13 @@ public class MatchDTO {
                 .build();
     }
 
-    public static MatchDTO toMatchDTO(Match saved) {
+    public static MatchDTO toMatchDTO(Match match) {
         return MatchDTO.builder()
-                .startsAt(saved.getStartsAt())
-                .createdAt(saved.getCreatedAt())
+                .id(match.getId())
+                .createdAt(match.getCreatedAt())
+                .players(match.getPlayers().stream().map(PlayerDTO::toPlayerDTO).toList())
+                .startsAt(match.getStartsAt())
                 .build();
     }
+
 }

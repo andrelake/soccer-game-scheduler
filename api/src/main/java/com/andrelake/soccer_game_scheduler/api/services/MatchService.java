@@ -5,6 +5,7 @@ import com.andrelake.soccer_game_scheduler.api.domain.Player;
 import com.andrelake.soccer_game_scheduler.api.domain.dto.MatchDTO;
 import com.andrelake.soccer_game_scheduler.api.domain.dto.PlayerDTO;
 import com.andrelake.soccer_game_scheduler.api.repositories.MatchRepository;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +27,12 @@ public class MatchService {
         return MatchDTO.toMatchDTO(saved);
     }
 
+    public MatchDTO getById(Long id) {
+        return matchRepository.findById(id)
+                .map(MatchDTO::toMatchDTO)
+                .orElseThrow(() -> new EntityNotFoundException("Match not found"));
+    }
+
     @Transactional
     public String addPlayerToMatch(Long matchId, Long playerId) {
         Match match = matchRepository.findById(matchId)
@@ -42,4 +49,5 @@ public class MatchService {
 
         return "Player " + player.getName() + " added to the match.";
     }
+
 }
